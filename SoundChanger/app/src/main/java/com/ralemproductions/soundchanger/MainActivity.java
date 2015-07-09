@@ -14,6 +14,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import java.io.File;
 import java.io.IOException;
@@ -24,15 +26,35 @@ public class MainActivity extends Activity {
     public MediaRecorder recorder = null;
     private MediaPlayer player;
     private String OUTPUT_FILE;
+    private Button recordButton;
+    private TextView recordString;
+    private boolean currentlyRecording;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         OUTPUT_FILE = Environment.getExternalStorageDirectory() + "/audiorecorder.3gpp";
+        recordButton = (Button) findViewById(R.id.recordButton);
+        recordString = (TextView) findViewById(R.id.recordString);
+        currentlyRecording = false;
     }
 
-    public void StartClick(View view) throws IOException {
+    public void RecordButtonClicked(View view){
+        if(!currentlyRecording){
+            Start();
+            recordButton.setText("Stop Recording");
+            recordString.setText("YOU ARE RECORDING");
+            currentlyRecording = true;
+        }else{
+            Stop();
+            recordButton.setText("Start Recording");
+            recordString.setText("READY TO RECORD");
+            currentlyRecording = false;
+        }
+    }
+
+    public void Start() {
         if (recorder != null) {
             recorder.release();
         }
@@ -58,10 +80,12 @@ public class MainActivity extends Activity {
     }
 
 
-    public void StopClick(View view)
+    public void Stop()
     {
         if(recorder != null) {
-                recorder.stop();
+            recorder.stop();
+            recorder.release();
+            recorder = null;
         }
     }
 

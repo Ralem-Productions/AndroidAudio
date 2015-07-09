@@ -5,38 +5,34 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView" />
-
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Start"
-        android:id="@+id/btnStart"
-        android:layout_below="@+id/textView"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="READY TO RECORD"
+        android:id="@+id/recordString"
+        android:layout_marginTop="55dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Record"
+        android:id="@+id/recordButton"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/recordString"
         android:layout_centerHorizontal="true"
-        android:onClick="StartClick"/>
+        android:layout_marginTop="43dp"
+        android:onClick="RecordButtonClicked"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Stop"
-        android:id="@+id/btnStop"
-        android:layout_below="@+id/btnStart"
-        android:layout_alignLeft="@+id/btnStart"
-        android:layout_alignStart="@+id/btnStart"
-        android:layout_marginTop="76dp"
-        android:onClick="StopClick"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PlayBack"
-        android:id="@+id/btnPlayBack"
-        android:layout_below="@+id/btnStop"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="97dp"
+        android:text="Play Recording"
+        android:id="@+id/playback"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/recordButton"
+        android:layout_alignLeft="@+id/recordButton"
+        android:layout_alignStart="@+id/recordButton"
+        android:layout_marginTop="40dp"
         android:onClick="PlayBackClick"/>
-
 </RelativeLayout>
