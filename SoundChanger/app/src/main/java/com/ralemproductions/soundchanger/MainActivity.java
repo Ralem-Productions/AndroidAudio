@@ -16,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 import java.io.File;
 import java.io.IOException;
 
@@ -38,6 +37,12 @@ public class MainActivity extends Activity {
         recordButton = (Button) findViewById(R.id.recordButton);
         recordString = (TextView) findViewById(R.id.recordString);
         currentlyRecording = false;
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+    if(currentlyRecording){ Stop();}
     }
 
     public void RecordButtonClicked(View view){
@@ -79,9 +84,7 @@ public class MainActivity extends Activity {
         recorder.start();
     }
 
-
-    public void Stop()
-    {
+    public void Stop() {
         if(recorder != null) {
             recorder.stop();
             recorder.release();
@@ -89,9 +92,9 @@ public class MainActivity extends Activity {
         }
     }
 
-    public void PlayBackClick(View view)
-    {
-        if(currentlyRecording){return;}
+    public void PlayBackClick(View view) {
+        File outFile = new File(OUTPUT_FILE);
+        if(currentlyRecording || !outFile.exists()){return;}
         if(player != null){player.release();}
         player = new MediaPlayer();
         try {
