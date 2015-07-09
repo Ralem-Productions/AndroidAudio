@@ -23,7 +23,7 @@ import java.io.IOException;
 
 public class MainActivity extends Activity {
 
-    public MediaRecorder recorder = null;
+    private MediaRecorder recorder = null;
     private MediaPlayer player;
     private String OUTPUT_FILE;
     private Button recordButton;
@@ -91,6 +91,7 @@ public class MainActivity extends Activity {
 
     public void PlayBackClick(View view)
     {
+        if(currentlyRecording){return;}
         if(player != null){player.release();}
         player = new MediaPlayer();
         try {
